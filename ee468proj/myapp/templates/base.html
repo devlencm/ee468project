@@ -22,6 +22,25 @@
         <h3 class="text-primary">Python Django Simple Dropdown List Binding Populate Data</h3>
         <hr style="border-top:1px dotted #ccc;"/>
   {% block content %} {% endblock %}
+    <b>Salary:</b>
+        <button class="btn btn-primary" onclick="window.location.href='/minumumTable'">Minimum</button>
+        <button class="btn btn-primary" onclick="window.location.href='/maximumTable'">Maximum</button>
+        <button class="btn btn-primary" onclick="window.location.href='/averageTable'">Average</button>
+{% block table %} {% endblock %}
+        {#        <button type="button" class="btn btn-primary" id="Button2">Maximum</button>#}
+{#     <script>#}
+{#        document.getElementById("Button2").addEventListener("click", function(){#}
+{#        // Do something when the button is clicked#}
+{#        alert("Maximum!");#}
+{#        });#}
+{#    </script>#}
+{#        <button type="button" class="btn btn-primary" id="Button3">Average</button>#}
+{#     <script>#}
+{#        document.getElementById("Button3").addEventListener("click", function(){#}
+{#        // Do something when the button is clicked#}
+{#        alert("Average");#}
+{#        });#}
+{#    </script>#}
     </div>
     </div>
 </body>
