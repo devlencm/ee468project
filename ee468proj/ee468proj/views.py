@@ -11,12 +11,12 @@ def showlist(request):
 
 def minumumTable(request):
     mydb = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        port='3307',
-        passwd='Blackhorses1@',
-        auth_plugin='mysql_native_password',
-        database="university",
+    host="128.153.13.175",
+    port="3306",
+    user="group_c",
+    passwd='ChaBraKatMik',
+    auth_plugin='mysql_native_password',
+    database="university_group_c",
     )
 
     mycursor = mydb.cursor()
@@ -36,13 +36,14 @@ def minumumTable(request):
 
 def maximumTable(request):
     mydb = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        port='3307',
-        passwd='Blackhorses1@',
-        auth_plugin='mysql_native_password',
-        database="university",
+    host="128.153.13.175",
+    port="3306",
+    user="group_c",
+    passwd='ChaBraKatMik',
+    auth_plugin='mysql_native_password',
+    database="university_group_c",
     )
+
 
     mycursor = mydb.cursor()
 
@@ -62,12 +63,12 @@ def maximumTable(request):
 
 def averageTable(request):
     mydb = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        port='3307',
-        passwd='Blackhorses1@',
-        auth_plugin='mysql_native_password',
-        database="university",
+    host="128.153.13.175",
+    port="3306",
+    user="group_c",
+    passwd='ChaBraKatMik',
+    auth_plugin='mysql_native_password',
+    database="university_group_c",
     )
 
     mycursor = mydb.cursor()
