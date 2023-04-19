@@ -1,18 +1,21 @@
 # views.py
 from django.http import HttpResponse
 from django.shortcuts import render
-from myapp.models import City
+
 import mysql.connector
 
 
+def home(request):
+    return render(request, "homepage.html")
 
+def admin1(request):
+    return render(request, "home.html")
 
+def instructor(request):
+    return render(request, "instructor.html")
 
-def showlist(request):
-    results = City.objects.all
-    return render(request, "home.html", {"showcity": results})
-
-
+def student(request):
+    return render(request, "student.html")
 def salary(request):
     mydb = mysql.connector.connect(
         host="localhost",
