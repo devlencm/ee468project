@@ -7,10 +7,6 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Cairocoders</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
    <a class="nav-item nav-link active" href="">Home</a>
@@ -22,10 +18,16 @@
         <h3 class="text-primary">Python Django Simple Dropdown List Binding Populate Data</h3>
         <hr style="border-top:1px dotted #ccc;"/>
   {% block content %} {% endblock %}
-    <b>Salary:</b>
+     <p> Click button to get list of name by name,department and salary</p>
+        <button class="btn btn-primary" onclick="window.location.href='/name'">Name</button>
+        <button class="btn btn-primary" onclick="window.location.href='/dept_name'">Department</button>
+        <button class="btn btn-primary" onclick="window.location.href='/salary'">Salary</button>
+  {% block salary %} {% endblock %}
+    <br><b>Salary:</b></br>
         <button class="btn btn-primary" onclick="window.location.href='/minumumTable'">Minimum</button>
         <button class="btn btn-primary" onclick="window.location.href='/maximumTable'">Maximum</button>
         <button class="btn btn-primary" onclick="window.location.href='/averageTable'">Average</button>
+
 {% block table %} {% endblock %}
         {#        <button type="button" class="btn btn-primary" id="Button2">Maximum</button>#}
 {#     <script>#}
