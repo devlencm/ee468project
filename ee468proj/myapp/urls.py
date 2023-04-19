@@ -1,10 +1,9 @@
 # urls.py
 from django.contrib import admin
 import views
-from django.conf.urls import url
 from django.urls import path, include
 
-from ee468proj.ee468proj.views import minumumTable, maximumTable, averageTable
+from ee468proj.views import minumumTable, maximumTable, averageTable
 
 urlpatterns = [
     path('admin/', admin.site.urls),

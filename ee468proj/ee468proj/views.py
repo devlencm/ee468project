@@ -18,12 +18,12 @@ def student(request):
     return render(request, "student.html")
 def salary(request):
     mydb = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        port='3307',
-        passwd='Blackhorses1@',
+        host="128.153.13.175",
+        port="3306",
+        user="group_c",
+        passwd='ChaBraKatMik',
         auth_plugin='mysql_native_password',
-        database="university",
+        database="university_group_c",
     )
     mycursor = mydb.cursor()
     mycursor.execute('select name from instructor order by salary asc;')
@@ -40,12 +40,12 @@ def salary(request):
     return render(request, 'dept_name.html', context)
 def dept_name(request):
     mydb = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        port='3307',
-        passwd='Blackhorses1@',
+        host="128.153.13.175",
+        port="3306",
+        user="group_c",
+        passwd='ChaBraKatMik',
         auth_plugin='mysql_native_password',
-        database="university",
+        database="university_group_c",
     )
 
     mycursor = mydb.cursor()
@@ -64,12 +64,12 @@ def dept_name(request):
     return render(request, 'dept_name.html', context)
 def name(request):
     mydb = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        port='3307',
-        passwd='Blackhorses1@',
+        host="128.153.13.175",
+        port="3306",
+        user="group_c",
+        passwd='ChaBraKatMik',
         auth_plugin='mysql_native_password',
-        database="university",
+        database="university_group_c",
     )
 
     mycursor = mydb.cursor()
@@ -88,12 +88,12 @@ def name(request):
     return render(request, 'name.html', context)
 def minumumTable(request):
     mydb = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        port='3307',
-        passwd='Blackhorses1@',
-        auth_plugin='mysql_native_password',
-        database="university",
+    host="128.153.13.175",
+    port="3306",
+    user="group_c",
+    passwd='ChaBraKatMik',
+    auth_plugin='mysql_native_password',
+    database="university_group_c",
     )
 
     mycursor = mydb.cursor()
@@ -113,13 +113,14 @@ def minumumTable(request):
 
 def maximumTable(request):
     mydb = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        port='3307',
-        passwd='Blackhorses1@',
-        auth_plugin='mysql_native_password',
-        database="university",
+    host="128.153.13.175",
+    port="3306",
+    user="group_c",
+    passwd='ChaBraKatMik',
+    auth_plugin='mysql_native_password',
+    database="university_group_c",
     )
+
 
     mycursor = mydb.cursor()
 
@@ -139,12 +140,12 @@ def maximumTable(request):
 
 def averageTable(request):
     mydb = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        port='3307',
-        passwd='Blackhorses1@',
-        auth_plugin='mysql_native_password',
-        database="university",
+    host="128.153.13.175",
+    port="3306",
+    user="group_c",
+    passwd='ChaBraKatMik',
+    auth_plugin='mysql_native_password',
+    database="university_group_c",
     )
 
     mycursor = mydb.cursor()
