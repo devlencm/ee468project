@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 import mysql.connector
+from flask import Flask, request
 
 
 def home(request):
@@ -10,6 +11,32 @@ def home(request):
 
 def admin1(request):
     return render(request, "home.html")
+
+def admin2(request):
+    mydb = mysql.connector.connect(
+        host="128.153.13.175",
+        port="3306",
+        user="group_c",
+        passwd='ChaBraKatMik',
+        auth_plugin='mysql_native_password',
+        database="university_group_c",
+    )
+
+    mycursor = mydb.cursor()
+    mycursor.execute('select name, sum(amount) from GrantAward join Investigator on GrantAward.agent=Investigator.agent '
+                     'and GrantAward.award_id=Investigator.award_id join Instructor on Investigator.teacher_id=Instructor.id '
+                     'where name="12345";')
+
+    table_data = '<table style="width:400px"><th>Name</th></tr>'
+    for (name) in mycursor:
+        row = '<tr><td>{}</td></tr>'.format(name)
+        table_data += row
+    table_data += '</table>'
+
+    mycursor.close()
+    mydb.close()
+    context = {'table_data': table_data}
+    return render(request, 'f3.html', context)
 
 def instructor(request):
     return render(request, "instructor.html")

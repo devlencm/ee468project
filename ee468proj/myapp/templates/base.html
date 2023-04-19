@@ -28,6 +28,12 @@
         <button class="btn btn-primary" onclick="window.location.href='/maximumTable'">Maximum</button>
         <button class="btn btn-primary" onclick="window.location.href='/averageTable'">Average</button>
 
+        {% block name %} {% endblock %}
+    <br><b>Name:</b></br>
+        <button class="btn btn-primary" onclick="window.location.href='/minumumTable'">Minimum</button>
+        <button class="btn btn-primary" onclick="window.location.href='/maximumTable'">Maximum</button>
+        <button class="btn btn-primary" onclick="window.location.href='/averageTable'">Average</button>
+
 {% block table %} {% endblock %}
         {#        <button type="button" class="btn btn-primary" id="Button2">Maximum</button>#}
 {#     <script>#}
