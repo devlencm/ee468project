@@ -163,3 +163,38 @@ def averageTable(request):
     context = {'table_data': table_data}
     return render(request, 'table.html', context)
 
+def f6(request):
+    dept = request.POST.get('dept', 0)
+    year = request.POST.get('year', 0)
+    semester = request.POST.get('semester', 0)
+
+    mydb = mysql.connector.connect(
+    host="128.153.13.175",
+    port="3306",
+    user="group_c",
+    passwd='ChaBraKatMik',
+    auth_plugin='mysql_native_password',
+    database="university_group_c",
+    )
+
+    mycursor = mydb.cursor()
+
+    query = "select s.course_id, s.sec_id, s.semester, s.year, s.building, s.room, s.capacity from section s join " \
+            "course c on s.course_id = c.course_id where c.dept_name = '" + dept + "' and s.semester = " + semester + \
+            " and s.year = " + year + ";"
+    mycursor.execute(query)
+
+    table_data = '<table style="width:75%"><th>Course</th><th>Section</th><th>Semester</th><th>Year</th>' \
+                 '<th>Building</th><th>Room</th><th>Capacity</th></tr>'
+    if mycursor:
+        for (course_id, sec_id, semester, year, building, room, capacity) in mycursor:
+            row = '<tr><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td></tr>'.format\
+                (course_id, sec_id, semester, year, building, room, capacity)
+            table_data += row
+        table_data += '</table>'
+    else:
+        table_data = '<p>No results found.</p>'
+    mycursor.close()
+    mydb.close()
+    context = {'table_data': table_data}
+    return render(request, 'f6.html', context)

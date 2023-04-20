@@ -9,6 +9,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
+        <button class="btn btn-primary" onclick="window.location.href='/student'">Back</button>
         <button class="btn btn-primary" onclick="window.location.href='/home'">home</button>
     </div>
   </div>
@@ -17,19 +18,9 @@
     <div class="col-md-12 well">
         <h3 class="text-primary">Welcome Student!</h3>
         <hr style="border-top:1px dotted #ccc;"/>
-    </div>
- </div>
-<form action="{% url 'f6' %}" method="post">
-{% csrf_token %}
-  <label for="dept">Department:</label>
-  <input type="text" id="dept" name="dept">
-  <label for="year">Year:</label>
-  <input type="text" id="year" name="year">
-  <label for="semester">Semester:</label>
-  <input type="text" id="semester" name="semester"><br><br>
-  <input type="submit" value="Submit">
-</form>
 
-<p>Click on the submit button to submit the form.</p>
+    </div>
+    </div>
+    {{ table_data | safe }}
 </body>
 </html>
