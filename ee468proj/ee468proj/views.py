@@ -30,7 +30,8 @@ def salary(request):
 
     table_data = '<table style="width:400px"><th>Name</th></tr>'
     for (name) in mycursor:
-        row = '<tr><td>{}</td></tr>'.format(name)
+        name1 = str(name[0])
+        row = '<tr><td>{}</td></tr>'.format(name1)
         table_data += row
     table_data += '</table>'
 
@@ -54,7 +55,8 @@ def dept_name(request):
 
     table_data = '<table style="width:400px"><th>Name</th></tr>'
     for (name) in mycursor:
-        row = '<tr><td>{}</td></tr>'.format(name)
+        name1 = str(name[0])
+        row = '<tr><td>{}</td></tr>'.format(name1)
         table_data += row
     table_data += '</table>'
 
@@ -78,7 +80,8 @@ def name(request):
 
     table_data = '<table style="width:400px"><th>Name</th></tr>'
     for (name) in mycursor:
-        row = '<tr><td>{}</td></tr>'.format(name)
+        name1 = str(name[0])
+        row = '<tr><td>{}</td></tr>'.format(name1)
         table_data += row
     table_data += '</table>'
 
