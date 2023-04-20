@@ -17,11 +17,14 @@ def instructor(request):
 def student(request):
     return render(request, "student.html")
 
-from flask import Flask, request, render_template
 
-app = Flask(__name__)
+from django import forms
 
-@app.route('/feature5', methods=['GET', 'POST'])
+class Feature5Form(forms.Form):
+    instructorname = forms.CharField(label='Enter an instructor name')
+    course1 = forms.CharField(label='Enter a course')
+    semester = forms.CharField(label='Enter a semester (1 for fall, 2 for spring)')
+
 def feature5(request):
     mydb = mysql.connector.connect(
         host="128.153.13.175",
@@ -32,19 +35,31 @@ def feature5(request):
         database="university_group_c",
     )
     mycursor = mydb.cursor()
-    #course = request.Post['course']
-   # instructor = request.Post['instructorname']
-   # semester = request.Post['semester']
-    q = 'SELECT s.name FROM takes as t JOIN Student as s ON t.student_id = s.student_id JOIN section as sec ON t.course_id = sec.course_id AND t.sec_id = sec.sec_id AND t.semester = sec.semester AND t.year = sec.year JOIN teaches as tch ON sec.course_id = tch.course_id AND sec.sec_id = tch.sec_id AND sec.semester = tch.semester AND sec.year = tch.year JOIN instructor as inst ON tch.teacher_id = inst.id WHERE t.semester = 1 AND inst.name = "Hou" AND t.course_id = "EE468";'
 
-    mycursor.execute(q)
+    print(request.GET)
+    instructor = request.POST.get('instructor')
+    course = request.POST.get('course1')
+    semester = request.POST.get('semester')
+
+    print(f"Instructor name: {instructor}")
+    print(f"Course: {course}")
+    print(f"Semester: {semester}")
+
+    q = 'SELECT s.name FROM takes as t JOIN Student as s ON t.student_id = s.student_id JOIN section as sec ON ' \
+            't.course_id = sec.course_id AND t.sec_id = sec.sec_id AND t.semester = sec.semester AND t.year = sec.year ' \
+         'JOIN teaches as tch ON sec.course_id = tch.course_id AND sec.sec_id = tch.sec_id AND sec.semester = tch.semester ' \
+         'AND sec.year = tch.year JOIN instructor as inst ON tch.teacher_id = inst.id WHERE t.semester = %s AND ' \
+         'inst.name = %s AND t.course_id = %s;'
+
+    mycursor.execute(q, (semester, instructor, course))
 
     table_data = '<table style="width:400px"><th>Name</th></tr>'
     for (name) in mycursor:
-        name1 = str(name[0])
+        name1= str(name[0])
         row = '<tr><td>{}</td></tr>'.format(name1)
         table_data += row
     table_data += '</table>'
+
     mycursor.close()
     mydb.close()
     context = {'table_data': table_data}
@@ -108,7 +123,7 @@ def name(request):
 
     mycursor = mydb.cursor()
 
-    mycursor.execute('Select name from instructor order by name asc;')
+    mycursor.execute('Select name from instructor order by name asc;')  #Select name from instructor order by name asc;
 
     table_data = '<table style="width:400px"><th>Name</th></tr>'
     for (name) in mycursor:
