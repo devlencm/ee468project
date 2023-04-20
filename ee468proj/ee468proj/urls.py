@@ -2,7 +2,8 @@
 from django.contrib import admin  
 from django.urls import path, include
 
-from ee468proj.views import salary, dept_name, admin1, minumumTable, maximumTable, averageTable, name, home, instructor, student
+from ee468proj.views import salary, dept_name, admin1, minumumTable, maximumTable, averageTable, name, \
+    home, instructor, student, feature5
 
 
 urlpatterns = [
@@ -12,6 +13,7 @@ urlpatterns = [
     path('student/', student, name='student'),
     path('admin1/', admin1, name='admin1'),
     path('name/', name, name='name'),
+    path('feature5/', feature5, name='feature5'),
     path('salary/', salary, name='name'),
     path('dept_name/', dept_name, name='dept_name'),
     path('minumumTable/', minumumTable, name='minumumTable'),
