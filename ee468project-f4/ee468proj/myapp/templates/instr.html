@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1"/>
+ <title>{% block title %}Python Django Simple Dropdown List Binding Populate Data {% endblock %}</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<style>
+.padding {
+	margin-right: 16px;
+}
+
+</style>
+<body>
+<center>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+        <button class="btn btn-primary padding" onclick="window.location.href='/instrr'">back</button>
+	<button class="btn btn-primary" onclick="window.location.href='/home'">home</button>
+    </div>
+  </div>
+</nav>
+ <div class="container" style="padding:20px;">
+    <div class="col-md-12 well">
+        <h3 class="text-primary">Your Courses</h3>
+        <hr style="border-top:1px dotted #ccc;"/>
+    </div>
+    </div>
+   
+    {{ table_data|safe }}
+</center>
+</body>
+</html>
