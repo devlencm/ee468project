@@ -67,6 +67,7 @@ def admin2(request):
 
     else:
         names = Instructor.objects.values('name')
+
         context = {'names': names}
         return render(request, 'base.html', context)
 
