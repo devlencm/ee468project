@@ -1,10 +1,10 @@
 # views.py
 from django.http import HttpResponse
 from django.shortcuts import render
+from .models import Department
+from .models import Section
 
 import mysql.connector
-
-
 def home(request):
     return render(request, "homepage.html")
 
@@ -15,7 +15,14 @@ def instructor(request):
     return render(request, "instructor.html")
 
 def student(request):
-    return render(request, "student.html")
+    depts = Department.objects.all()
+    years = Section.objects.values('year').distinct()
+    semesters = Section.objects.values('semester').distinct()
+    context = {'depts' : depts,
+               'years' : years,
+               'semesters' : semesters
+               }
+    return render(request, "student.html", context)
 def salary(request):
     mydb = mysql.connector.connect(
         host="128.153.13.175",
@@ -166,7 +173,7 @@ def averageTable(request):
 def f6(request):
     dept = request.POST.get('dept', 0)
     year = request.POST.get('year', 0)
-    semester = request.POST.get('semester', 0)
+    semester = request.POST.get('sem', 0)
 
     mydb = mysql.connector.connect(
     host="128.153.13.175",

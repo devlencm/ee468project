@@ -21,12 +21,27 @@
  </div>
 <form action="{% url 'f6' %}" method="post">
 {% csrf_token %}
-  <label for="dept">Department:</label>
-  <input type="text" id="dept" name="dept">
-  <label for="year">Year:</label>
-  <input type="text" id="year" name="year">
-  <label for="semester">Semester:</label>
-  <input type="text" id="semester" name="semester"><br><br>
+    <label for="dept">Department:</label>
+    <select name="dept" id="dept">
+        <option disabled="true" selected>-- Select Course --</option>
+        {% for r in depts %}
+            <option>{{ r.dept_name }}</option>
+        {% endfor%}
+    </select>
+    <label for="year">Year:</label>
+    <select name="year" id="year">
+        <option disabled="true" selected>-- Select Year --</option>
+        {% for r in years %}
+            <option>{{ r.year }}</option>
+        {% endfor%}
+    </select>
+    <label for="sem">Semester:</label>
+    <select name="sem" id="sem">
+        <option disabled="true" selected>-- Select Semester --</option>
+        {% for r in semesters %}
+            <option>{{ r.semester }}</option>
+        {% endfor%}
+    </select>
   <input type="submit" value="Submit">
 </form>
 
