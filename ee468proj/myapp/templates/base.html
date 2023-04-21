@@ -13,7 +13,7 @@
     </div>
   </div>
 </nav>
- <div class="container" style="padding:20px;">
+ <div class="container">
     <div class="col-md-12 well">
         <h3 class="text-primary">Welcome Admin!</h3>
         <hr style="border-top:1px dotted #ccc;"/>
@@ -35,21 +35,20 @@
         <button class="btn btn-primary" onclick="window.location.href='/averageTable'">Average</button>
 
 {% block table %} {% endblock %}
-        {#        <button type="button" class="btn btn-primary" id="Button2">Maximum</button>#}
-{#     <script>#}
-{#        document.getElementById("Button2").addEventListener("click", function(){#}
-{#        // Do something when the button is clicked#}
-{#        alert("Maximum!");#}
-{#        });#}
-{#    </script>#}
-{#        <button type="button" class="btn btn-primary" id="Button3">Average</button>#}
-{#     <script>#}
-{#        document.getElementById("Button3").addEventListener("click", function(){#}
-{#        // Do something when the button is clicked#}
-{#        alert("Average");#}
-{#        });#}
-{#    </script>#}
+
+<form method="post" action="/admin2/">
+  {% csrf_token %}
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name">
+      <label for="year">Year:</label>
+  <input type="text" id="year" name="year">
+      <label for="semester">Semester:</label>
+  <input type="text" id="semester" name="semester">
+  <button type="submit">Submit</button>
+</form>
+      {% block table1 %} {% endblock %}
     </div>
-    </div>
+        </div>
+     </div>
 </body>
 </html>

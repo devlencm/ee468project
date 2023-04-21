@@ -1,9 +1,7 @@
 # views.py
-from django.http import HttpResponse
-from django.shortcuts import render
 
 import mysql.connector
-from flask import Flask, request
+from django.shortcuts import render
 
 
 def home(request):
@@ -13,30 +11,62 @@ def admin1(request):
     return render(request, "home.html")
 
 def admin2(request):
-    mydb = mysql.connector.connect(
-        host="128.153.13.175",
-        port="3306",
-        user="group_c",
-        passwd='ChaBraKatMik',
-        auth_plugin='mysql_native_password',
-        database="university_group_c",
-    )
+    if request.method == 'POST':
+        name = request.POST.get('name', '')
+        year = request.POST.get('year', '')
+        semester = request.POST.get('semester', '')
+        mydb = mysql.connector.connect(
+            host="128.153.13.175",
+            port="3306",
+            user="group_c",
+            passwd='ChaBraKatMik',
+            auth_plugin='mysql_native_password',
+            database="university_group_c",
+        )
+        mycursor = mydb.cursor()
+        query1 = 'select count(sec_id) from instructor join teaches on teaches.teacher_id = instructor.id where name = ' \
+                 '%s and year = %s and semester = %s;'
+        query2 = 'select count(distinct(student_id)) as "#Students" from instructor join teaches on teaches.teacher_id ' \
+                 '= instructor.id right join takes on takes.course_id = teaches.course_id ' \
+                 'where name = %s and takes.year = %s and takes.semester = %s group by takes.semester, takes.year;'
+        if (semester == 2):
+            query3 = 'select sum(amount) from investigator as v join grantaward as g on v.award_id = g.award_id and v.agent = g.agent join instructor on id = teacher_id where name = %s and ((startYear = %s and startMonth <= 6) or (startYear >= %s and endYear>= %s) or (endYear = %s and endMonth <= 6));'
+        else:
+            query3 = 'select sum(amount) from investigator as v join grantaward as g on v.award_id = g.award_id and v.agent = g.agent join instructor on id = teacher_id where name = %s and ((startYear = %s and startMonth <= 12) or (startYear >= %s and endYear>= %s) or (endYear = %s and endMonth > 8));'
 
-    mycursor = mydb.cursor()
-    mycursor.execute('select name, sum(amount) from GrantAward join Investigator on GrantAward.agent=Investigator.agent '
-                     'and GrantAward.award_id=Investigator.award_id join Instructor on Investigator.teacher_id=Instructor.id '
-                     'where name="12345";')
+        if semester == 2:
+            query4 = 'select count(title) from publication join instructor on id = teacher_id where name = %s and ((year = %s and month < 6) or (year > %s));'
+        else:
+            query4 = 'select count(title) from publication join instructor on id = teacher_id where name = %s and ((year = %s and month <= 12) or (year > %s));'
 
-    table_data = '<table style="width:400px"><th>Name</th></tr>'
-    for (name) in mycursor:
-        row = '<tr><td>{}</td></tr>'.format(name)
-        table_data += row
-    table_data += '</table>'
+        mycursor.execute(query1, (name, year, semester))
+        result1 = mycursor.fetchone()[0]
 
-    mycursor.close()
-    mydb.close()
-    context = {'table_data': table_data}
-    return render(request, 'f3.html', context)
+        mycursor.execute(query2, (name, year, semester))
+        row = mycursor.fetchone()
+        if row is None:
+            result2 = 0
+        else:
+            result2 = row[0]
+
+        mycursor.execute(query3, (name, year, year, year, year))
+        result3 = mycursor.fetchone()[0]
+
+        mycursor.execute(query4, (name, year, year))
+        result4 = mycursor.fetchone()[0]
+
+        table_data = '<table style="width:600px"><tr><th>Name</th><th>#Sections</th><th>#Students</th><th>Funding</th><th>Papers Published</th></tr>'
+        table_data += '<tr><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td></tr>'.format(name, result1, result2, result3, result4)
+        table_data += '</table>'
+
+        mycursor.close()
+        mydb.close()
+        context = {'table_data': table_data}
+        return render(request, 'f3.html', context)
+
+    else:
+        return render(request, 'base.html')
+
 
 def instructor(request):
     return render(request, "instructor.html")
@@ -189,4 +219,5 @@ def averageTable(request):
     mydb.close()
     context = {'table_data': table_data}
     return render(request, 'table.html', context)
+
 
