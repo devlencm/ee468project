@@ -116,7 +116,6 @@ class Student(models.Model):
     def __repr__(self):
       return 'Student('+self.student_id+', '+self.name+', credits: '+str(self.total_credits)+')'
 
-'''
 class Takes(models.Model):
     student = models.ForeignKey(Student, models.DO_NOTHING, related_name="students")
     course = models.ForeignKey(Section, models.DO_NOTHING, related_name="sections")
@@ -142,7 +141,6 @@ class Teaches(models.Model):
         managed = False
         db_table = 'Teaches'
         unique_together = (('course', 'sec', 'semester', 'year', 'teacher'),)
-'''
 
 class Department(models.Model):
     dept_name = models.CharField(primary_key=True, max_length=32)

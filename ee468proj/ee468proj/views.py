@@ -2,7 +2,7 @@
 
 import mysql.connector
 from django.shortcuts import render
-from .models import Instructor
+from .models import Instructor, Takes
 
 
 def home(request):
@@ -12,10 +12,13 @@ def admin1(request):
     return render(request, "home.html")
 
 def admin2(request):
+    name = request.POST.get('name', '')
+    year = request.POST.get('year', '')
+    semester = request.POST.get('semester', '')
+    names = Instructor.objects.all()
+    years = Takes.objects.values('year').distinct
+    semesters = Takes.objects.values('semester').distinct
     if request.method == 'POST':
-        name = request.POST.get('name', '')
-        year = request.POST.get('year', '')
-        semester = request.POST.get('semester', '')
         mydb = mysql.connector.connect(
             host="128.153.13.175",
             port="3306",
@@ -62,13 +65,11 @@ def admin2(request):
 
         mycursor.close()
         mydb.close()
-        context = {'table_data': table_data}
+        context = {'table_data': table_data, 'names': names, 'years': years, 'semesters': semesters}
         return render(request, 'f3.html', context)
 
     else:
-        names = Instructor.objects.values('name')
-
-        context = {'names': names}
+        context = {'names': names, 'years': years, 'semesters': semesters}
         return render(request, 'base.html', context)
 
 
