@@ -53,7 +53,12 @@ def feature5(request):
 
     mycursor.execute(q, (semester, instructor, course))
 
-    table_data = '<table style="width:400px"><th>Name</th></tr>'
+    if(course == 1):
+        sem = "Spring"
+    else:
+        sem = "Fall"
+
+    table_data = f'<table style="width:400px"><th>Students [{instructor}, {course}, {sem}]</th></tr>'
     for (name) in mycursor:
         name1= str(name[0])
         row = '<tr><td>{}</td></tr>'.format(name1)
