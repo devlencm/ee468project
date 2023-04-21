@@ -2,6 +2,7 @@
 
 import mysql.connector
 from django.shortcuts import render
+from .models import Instructor
 
 
 def home(request):
@@ -65,7 +66,9 @@ def admin2(request):
         return render(request, 'f3.html', context)
 
     else:
-        return render(request, 'base.html')
+        names = Instructor.objects.values('name')
+        context = {'names': names}
+        return render(request, 'base.html', context)
 
 
 def instructor(request):
