@@ -2,31 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1"/>
- <title>{% block title %}Python Django Simple Dropdown List Binding Populate Data {% endblock %}</title>
+ <title>{% block title %} Welcome {% endblock %}</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-        <button class="btn btn-primary" onclick="window.location.href='/home'">home</button>
+	    <button class="btn btn-primary" onclick="window.location.href='/home'">home</button>
     </div>
   </div>
 </nav>
  <div class="container" style="padding:20px;">
     <div class="col-md-12 well">
-        <h3 class="text-primary">Welcome Admin!</h3>
+        <h3 class="text-primary">Welcome Instructors!</h3>
         <hr style="border-top:1px dotted #ccc;"/>
-  {% block content %} {% endblock %}
-     <p> Click button to get list of name by name,department and salary</p>
-        <button class="btn btn-primary" onclick="window.location.href='/name'">Name</button>
-        <button class="btn btn-primary" onclick="window.location.href='/dept_name'">Department</button>
-        <button class="btn btn-primary" onclick="window.location.href='/salary'">Salary</button>
-  {% block salary %} {% endblock %}
-    <br><b>Salary:</b></br>
-        <button class="btn btn-primary" onclick="window.location.href='/minumumTable'">Minimum</button>
-        <button class="btn btn-primary" onclick="window.location.href='/maximumTable'">Maximum</button>
-        <button class="btn btn-primary" onclick="window.location.href='/averageTable'">Average</button>
+     <p> Select a user</p>
+        <button class="btn btn-primary" onclick="window.location.href='/instrr'">View courses</button>
+        <button class="btn btn-primary" onclick="window.location.href='/instructor2'">View students</button>
+
 
 {% block table %} {% endblock %}
         {#        <button type="button" class="btn btn-primary" id="Button2">Maximum</button>#}
