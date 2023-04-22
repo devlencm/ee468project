@@ -36,14 +36,20 @@ def admin2(request):
              '= instructor.id right join takes on takes.course_id = teaches.course_id ' \
              'where name = %s and takes.year = %s and takes.semester = %s group by takes.semester, takes.year;'
     if (semester == 2):
-        query3 = 'select sum(amount) from investigator as v join grantaward as g on v.award_id = g.award_id and v.agent = g.agent join instructor on id = teacher_id where name = %s and ((startYear = %s and startMonth <= 6) or (startYear >= %s and endYear>= %s) or (endYear = %s and endMonth <= 6));'
+        query3 = 'select sum(amount) from investigator as v join grantaward as g on v.award_id = g.award_id and v.agent ' \
+                 '= g.agent join instructor on id = teacher_id where name = %s and ((startYear = %s and startMonth <= 6)' \
+                 ' or (startYear >= %s and endYear>= %s) or (endYear = %s and endMonth <= 6));'
     else:
-        query3 = 'select sum(amount) from investigator as v join grantaward as g on v.award_id = g.award_id and v.agent = g.agent join instructor on id = teacher_id where name = %s and ((startYear = %s and startMonth <= 12) or (startYear >= %s and endYear>= %s) or (endYear = %s and endMonth > 8));'
+        query3 = 'select sum(amount) from investigator as v join grantaward as g on v.award_id = g.award_id and v.agent ' \
+                 '= g.agent join instructor on id = teacher_id where name = %s and ((startYear = %s and startMonth <= 12)' \
+                 ' or (startYear >= %s and endYear>= %s) or (endYear = %s and endMonth > 8));'
 
     if semester == 2:
-        query4 = 'select count(title) from publication join instructor on id = teacher_id where name = %s and ((year = %s and month < 6) or (year > %s));'
+        query4 = 'select count(title) from publication join instructor on id = teacher_id where name = %s and ((year = ' \
+                 '%s and month < 6) or (year > %s));'
     else:
-        query4 = 'select count(title) from publication join instructor on id = teacher_id where name = %s and ((year = %s and month <= 12) or (year > %s));'
+        query4 = 'select count(title) from publication join instructor on id = teacher_id where name = %s and ((year = ' \
+                 '%s and month <= 12) or (year > %s));'
 
     mycursor.execute(query1, (name, year, semester))
     result1 = mycursor.fetchone()[0]
@@ -74,6 +80,7 @@ def admin2(request):
     else:
         context = {'names': names, 'years': years, 'semesters': semesters}
         return render(request, 'base.html', context)
+
 
 def instructor(request):
     return render(request, "instructor.html")
@@ -238,5 +245,3 @@ def averageTable(request):
     mydb.close()
     context = {'table_data': table_data}
     return render(request, 'table.html', context)
-
-
