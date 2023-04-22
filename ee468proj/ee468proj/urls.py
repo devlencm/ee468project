@@ -21,5 +21,4 @@ urlpatterns = [
     path('averageTable/', averageTable, name='averageTable'),
     path('instrr/', instrr, name='instrr'),
     path('instr/', instr, name='instr'),
-
     ]

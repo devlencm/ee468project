@@ -189,14 +189,15 @@ def salary(request):
 
     table_data = '<table style="width:400px"><th>Name</th></tr>'
     for (name) in mycursor:
-        row = '<tr><td>{}</td></tr>'.format(name)
+        name1 = str(name[0])
+        row = '<tr><td>{}</td></tr>'.format(name1)
         table_data += row
     table_data += '</table>'
 
     mycursor.close()
     mydb.close()
     context = {'table_data': table_data}
-    return render(request, 'dept_name.html', context)
+    return render(request, 'salary.html', context)
 def dept_name(request):
     mydb = mysql.connector.connect(
         host="128.153.13.175",
@@ -213,7 +214,8 @@ def dept_name(request):
 
     table_data = '<table style="width:400px"><th>Name</th></tr>'
     for (name) in mycursor:
-        row = '<tr><td>{}</td></tr>'.format(name)
+        name1 = str(name[0])
+        row = '<tr><td>{}</td></tr>'.format(name1)
         table_data += row
     table_data += '</table>'
 
@@ -237,7 +239,8 @@ def name(request):
 
     table_data = '<table style="width:400px"><th>Name</th></tr>'
     for (name) in mycursor:
-        row = '<tr><td>{}</td></tr>'.format(name)
+        name1 = str(name[0])
+        row = '<tr><td>{}</td></tr>'.format(name1)
         table_data += row
     table_data += '</table>'
 
