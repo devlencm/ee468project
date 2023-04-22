@@ -163,7 +163,10 @@ def averageTable(request):
     mydb.close()
     context = {'table_data': table_data}
     return render(request, 'table.html', context)
-    
+   
+def instrr(request):
+    return render(request, "instrr.html")
+
 def instr(request):
     if request.method == 'POST' and 'submit' in request.POST:
     	name = request.POST['name']
