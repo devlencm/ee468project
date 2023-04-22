@@ -1,12 +1,13 @@
-from django.urls import path
+# urls.py
 from django.contrib import admin
+import views
+from django.urls import path, include
 
-from . import views
+from ee468proj.views import minumumTable, maximumTable, averageTable
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('index/', views.index),
-    path('students/', views.students),
-    path('instructors/', views.instructors),
     path('admin/', admin.site.urls),
+    path('minumumTable/', minumumTable, name='minumumTable'),
+    path('maximumTable/', maximumTable, name='maximumTable'),
+    path('averageTable/', averageTable, name='averageTable'),
 ]
