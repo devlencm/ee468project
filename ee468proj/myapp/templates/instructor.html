@@ -17,7 +17,30 @@
     <div class="col-md-12 well">
         <h3 class="text-primary">Welcome Instructor!</h3>
         <hr style="border-top:1px dotted #ccc;"/>
+  <form action="{% url 'feature5' %}" method="post">
+            {% csrf_token %}
+      <div>
+            <label for="instructor">Enter an instructor name:</label>
+            <input type="text" id="instructor" name="instructor"><br><br>
+      </div>
+      <div>
+            <label for="course1">Enter a course:</label>
+            <input type="text" id="course1" name="course1" required>
+      </div>
+      <div>
+            <label for="semester">Enter a semester (1 for fall, 2 for spring):</label>
+            <input type="text" id="semester" name="semester" required>
+      </div>
+      <input type="submit" value="Submit">
+      </form>
+        {% block feature5 %} {% endblock %}
     </div>
     </div>
 </body>
 </html>
+
+
+
+
+
+
