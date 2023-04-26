@@ -23,7 +23,7 @@
 {% csrf_token %}
     <label for="dept">Department:</label>
     <select name="dept" id="dept">
-        <option disabled="true" selected>-- Select Course --</option>
+        <option disabled="true" selected>-- Select Department --</option>
         {% for r in depts %}
             <option>{{ r.dept_name }}</option>
         {% endfor%}

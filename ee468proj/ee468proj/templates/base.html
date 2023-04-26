@@ -23,18 +23,18 @@
         <h3 class="text-primary">Welcome!</h3>
         <hr style="border-top:1px dotted #ccc;"/>
   {% block content %} {% endblock %}
-     <p> Click button to get list of name by name,department and salary</p>
+     <p>Click button to get list of instructor names ordered by name, department and salary:</p>
         <button class="btn btn-primary" onclick="window.location.href='/name'">Name</button>
         <button class="btn btn-primary" onclick="window.location.href='/dept_name'">Department</button>
         <button class="btn btn-primary" onclick="window.location.href='/salary'">Salary</button>
   {% block salary %} {% endblock %}
-    <br><b>Salary:</b></br>
+    <p>Click button to get list of minimum, maximum, and average salaries by department:</p>
         <button class="btn btn-primary" onclick="window.location.href='/minumumTable'">Minimum</button>
         <button class="btn btn-primary" onclick="window.location.href='/maximumTable'">Maximum</button>
         <button class="btn btn-primary" onclick="window.location.href='/averageTable'">Average</button>
 
 {% block table %} {% endblock %}
-
+<p>Fill out the form below to get performance data of an instructor:</p>
 <form method="post" action="/admin1/">
   {% csrf_token %}
   <label for="name">Name:</label>

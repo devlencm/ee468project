@@ -9,6 +9,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
+        <button class="btn btn-primary padding" onclick="window.location.href='/instrr'">back</button>
         <button class="btn btn-primary" onclick="window.location.href='/home'">home</button>
     </div>
   </div>
@@ -20,15 +21,15 @@
   <form action="{% url 'feature5' %}" method="post">
             {% csrf_token %}
       <div>
-            <label for="instructor">Enter an instructor name:</label>
+            <label for="instructor"> Instructor Name:</label>
             <input type="text" id="instructor" name="instructor"><br><br>
       </div>
       <div>
-            <label for="course1">Enter a course:</label>
+            <label for="course1">Course:</label>
             <input type="text" id="course1" name="course1" required>
       </div>
       <div>
-            <label for="semester">Enter a semester (1 for fall, 2 for spring):</label>
+            <label for="semester">Semester:</label>
             <input type="text" id="semester" name="semester" required>
       </div>
       <input type="submit" value="Submit">
